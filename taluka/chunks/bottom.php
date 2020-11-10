@@ -44,12 +44,16 @@
 <script src="../assets/theme-assets/js/lib/data-table/buttons.print.min.js"></script>
 <script src="../assets/theme-assets/js/lib/data-table/buttons.colVis.min.js"></script>
 <script src="../assets/theme-assets/js/init/datatables-init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('.bootstrap-data-table-export').DataTable();
     } );
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
 </script>
 
 </body>

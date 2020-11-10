@@ -37,6 +37,7 @@ if (!isLoginTalukaAdmin($_SESSION["t_user"]["name"], $_SESSION["t_user"]["passwo
     <link rel="stylesheet" href="../assets/theme-assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
@@ -53,6 +54,9 @@ if (!isLoginTalukaAdmin($_SESSION["t_user"]["name"], $_SESSION["t_user"]["passwo
                 <li class="menu-title">Menu</li><!-- /.menu-title -->
                 <li>
                     <a href="./"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                </li>
+                <li>
+                    <a href="./entry.php"><i class="menu-icon fa fa-pencil"></i>Make Entries </a>
                 </li>
                 <li>
                     <a href="../logout.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a>

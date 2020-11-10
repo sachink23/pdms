@@ -52,7 +52,7 @@ if (!$exit):
                         <th>Booth Number</th>
                         <th>Booth Name</th>
                         <th>Voters</th>
-                        <!--th>Edit</th-->
+                        <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,7 +62,7 @@ if (!$exit):
                         <td><?= $booth["booth_number"] ?></td>
                         <td><?= $booth["booth_name"] ?></td>
                         <td><?= $booth["num_voters"] ?></td>
-                        <!--td><a href="edit-booth.php?bid=<?= $booth["booth_id"] ?>"><i class="fa fa-pencil text-danger" aria-hidden="true"></i></a></td-->
+                        <td><a href="edit-booth.php?bid=<?= $booth["booth_id"] ?>"><i class="fa fa-pencil text-danger" aria-hidden="true"></i></a></td>
                     </tr>
                     <?php endforeach; ?>
                     </tbody>

@@ -20,13 +20,47 @@ switch ($_GET["action"]) {
                 $q->execute([hashPass($_POST["password"]), $_POST["sdid"]]);
                 pageInfo("success","Successfully Changed Password!");
                 header("Location: ./subdist_det.php?t=".$_POST["sdid"]);
-
-                exit;
+                break;
             } catch (PDOException $e) {
                 pageInfo("warning","Database Error! Failed To Change Password For ".$_POST["sdid"]. ".");
                 header("Location: ./");
                 exit;
             }
+        } else {
+            invalidRq();
+        }
+
+    case "update_booth_details":
+        if (
+            isset($_POST["booth_num"]) &&
+            isset($_POST["booth_name"]) &&
+            isset($_POST["male_voters"]) &&
+            isset($_POST["fmale_voters"]) &&
+            isset($_POST["t_voters"]) &&
+            isset($_POST["b"])
+
+        ) {
+            $stmt = $con->prepare("UPDATE booths SET booth_number = ?, booth_name = ?, male_voters = ?, female_voters = ?, t_voters = ?, num_voters = ? WHERE booth_id = ?");
+            try {
+                $stmt->execute([
+                    $_POST["booth_num"],
+                    $_POST["booth_name"],
+                    $_POST["male_voters"],
+                    $_POST["fmale_voters"],
+                    $_POST["t_voters"],
+                    $_POST["male_voters"] + $_POST["fmale_voters"] + $_POST["t_voters"],
+                    $_POST["b"]
+                ]);
+                pageInfo("success", "Successfully Edited Booths!");
+                header("Location: edit-booth.php?bid=".$_POST["b"]);
+                break;
+            }
+            catch (PDOException $e) {
+                pageInfo("warning", "Failed! DB_ERROR!");
+                header("Location: edit-booth.php?bid=".$_POST["bid"]);
+
+            }
+
         } else {
             invalidRq();
         }

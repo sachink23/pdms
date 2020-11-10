@@ -45,8 +45,10 @@ if (!$exit):
                             <th>Sr No</th>
                             <th>Booth Number</th>
                             <th>Booth Name</th>
-                            <th>Voters</th>
-                            <th>Make Entry</th>
+                            <th>Male Voters</th>
+                            <th>Female Voters</th>
+                            <th>Transgender Voters</th>
+                            <th>Total Voters</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,8 +57,10 @@ if (!$exit):
                                 <td><?= ++$i ?></td>
                                 <td><?= $booth["booth_number"] ?></td>
                                 <td><?= $booth["booth_name"] ?></td>
+                                <td><?= $booth["male_voters"] ?></td>
+                                <td><?= $booth["female_voters"] ?></td>
+                                <td><?= $booth["t_voters"] ?></td>
                                 <td><?= $booth["num_voters"] ?></td>
-                                <td><a href="entry.php?bid=<?= $booth["booth_id"] ?>"><i class="fa fa-pencil text-danger" aria-hidden="true"></i></a></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
