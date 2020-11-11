@@ -37,10 +37,12 @@ switch ($_GET["action"]) {
             isset($_POST["male_voters"]) &&
             isset($_POST["fmale_voters"]) &&
             isset($_POST["t_voters"]) &&
-            isset($_POST["b"])
+            isset($_POST["b"]) &&
+            isset($_POST["officer"]) &&
+            isset($_POST["contact"])
 
         ) {
-            $stmt = $con->prepare("UPDATE booths SET booth_number = ?, booth_name = ?, male_voters = ?, female_voters = ?, t_voters = ?, num_voters = ? WHERE booth_id = ?");
+            $stmt = $con->prepare("UPDATE booths SET booth_number = ?, booth_name = ?, male_voters = ?, female_voters = ?, t_voters = ?, num_voters = ?, presiding_officer = ?, mobile_number = ? WHERE booth_id = ?");
             try {
                 $stmt->execute([
                     $_POST["booth_num"],
@@ -49,7 +51,10 @@ switch ($_GET["action"]) {
                     $_POST["fmale_voters"],
                     $_POST["t_voters"],
                     $_POST["male_voters"] + $_POST["fmale_voters"] + $_POST["t_voters"],
+                    $_POST["officer"],
+                    $_POST["contact"],
                     $_POST["b"]
+
                 ]);
                 pageInfo("success", "Successfully Edited Booths!");
                 header("Location: edit-booth.php?bid=".$_POST["b"]);

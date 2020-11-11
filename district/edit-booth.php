@@ -60,6 +60,21 @@ if (!$exit):
                                class="form-control" >
                     </div>
                 </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="">Presiding Officer</label>
+                        <input type="text" name="officer" id="officer" required value="<?= $booth['presiding_officer'] ?>"
+                               class="form-control" >
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="">Contact Number</label>
+                        <input type="number" min="9999999" max="999999999999" name="contact" id="contact" required value="<?= $booth['mobile_number'] ?>"
+                               class="form-control" >
+                    </div>
+                </div>
                 <div class="col-md-4 col-xl-3">
                     <div class="form-group">
                         <label for="male_voters">Male Voters</label>
