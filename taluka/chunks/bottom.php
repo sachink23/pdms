@@ -46,7 +46,11 @@
 <script src="../assets/theme-assets/js/init/datatables-init.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-
+<script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.bootstrap-data-table-export').DataTable();
