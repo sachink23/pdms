@@ -130,6 +130,12 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     } else {
                         lockFields()
+                        if (response.hasOwnProperty("entry")) {
+                            document.getElementById("male_votes").value = response.entry[0].male_voters;
+                            document.getElementById("fmale_votes").value = response.entry[0].fmale_voters;
+                            document.getElementById("t_votes").value = response.entry[0].t_voters;
+                        }
+
                         alert(response.message);
                     }
                 }
