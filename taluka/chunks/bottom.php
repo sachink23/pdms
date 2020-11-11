@@ -57,7 +57,7 @@
 </script>
 <style>
     .select2 {
-        width:100%!important;
+        min-width:100%;
     }
 </style>
 </body>

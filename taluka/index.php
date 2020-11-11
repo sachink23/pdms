@@ -21,7 +21,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="booth_name">Select Booth</label><br />
-                        <select class="form-control select2" onchange="changedT()" required name="booth_name" id="booth_name">
+                        <select class="form-control select2" onchange="changedT(); changedB()" required name="booth_name" id="booth_name">
                             <option value="">Select Booth</option>
                             <?php foreach ($booths as $booth): ?>
                                 <option value="<?= $booth['booth_id'] ?>"><?= $booth["booth_number"] ?> - <?= $booth["booth_name"] ?></option>
@@ -32,7 +32,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="slot">Select Time Slot</label><br />
-                        <select required onchange="changedT()" class="form-control select2" name="slot" id="slot">
+                        <select required onchange="changedT(); changedB();" class="form-control select2" name="slot" id="slot">
                             <option value="">Select Time Slot</option>
                             <option value="slot_1">Upto 10 AM</option>
                             <option value="slot_2">Upto 12 PM</option>
@@ -45,7 +45,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="male_votes">Male Votes Casted</label>
-                        <input type="number" onchange="changedT()"
+                        <input type="number" onchange="changedT()" readonly
                                class="form-control" name="male_votes" id="male_votes"
                                placeholder="Total Male Votes Casted">
                     </div>
@@ -53,7 +53,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="fmale_votes">Female Votes Casted</label>
-                        <input type="number" onchange="changedT()"
+                        <input type="number" onchange="changedT()" readonly
                                class="form-control" name="fmale_votes" id="fmale_votes"
                                placeholder="Total Female Votes Casted">
                     </div>
@@ -61,7 +61,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="t_votes">Transgender Votes Casted</label>
-                        <input type="number" onchange="changedT()"
+                        <input type="number" onchange="changedT()" readonly
                                class="form-control" name="t_votes" id="t_votes"
                                placeholder="Total Transgender Votes Casted">
                     </div>
@@ -99,6 +99,49 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
             t_votes = parseInt(document.getElementById("t_votes").value);
         }
         document.getElementById("ttl_votes").value = male_votes + fmale_votes + t_votes;
+    }
+
+    function changedB() {
+        lockFields();
+        let booth = document.getElementById("booth_name").value;
+        let slot = document.getElementById("slot").value;
+
+        if (isNaN(booth)) {
+            return false;
+        }
+        if (!(slot === "slot_1"  || slot === "slot_2" || slot === "slot_3" || slot === "slot_4" || slot === "slot_5")) {
+            return false;
+        }
+        let xhr = new XMLHttpRequest();
+        if (booth != null && slot != null) {
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.response);
+
+                    if (response.success) {
+                        lockFields(false);
+                    } else {
+                        lockFields()
+                        alert(response.message);
+                    }
+                }
+            }
+            xhr.open("get", "./get-entry.php?booth_id="+booth+"&slot="+slot);
+            xhr.send();
+        }
+
+
+    }
+
+    function lockFields(read = true) {
+        document.getElementById("male_votes").readOnly = read;
+        document.getElementById("fmale_votes").readOnly = read;
+        document.getElementById("t_votes").readOnly = read;
+        if (read) {
+            document.getElementById("male_votes").value = "";
+            document.getElementById("fmale_votes").value = "";
+            document.getElementById("t_votes").value = "";
+        }
     }
 </script>
 <?php
