@@ -56,7 +56,7 @@ if (!isLoginTalukaAdmin($_SESSION["t_user"]["name"], $_SESSION["t_user"]["passwo
                     <a href="./"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
                 <li>
-                    <a href="./entry.php"><i class="menu-icon fa fa-pencil"></i>Make Entries </a>
+                    <a href="./booth_details.php"><i class="menu-icon fa fa-pencil"></i>Booth Details</a>
                 </li>
                 <li>
                     <a href="../logout.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a>
