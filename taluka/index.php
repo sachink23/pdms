@@ -44,7 +44,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="male_votes">Male Votes Casted</label>
+                        <label for="male_votes">Male Votes Casted (<span id="total_male_votes"></span>)</label>
                         <input type="number" onchange="changedT()" readonly
                                class="form-control" name="male_votes" id="male_votes"
                                placeholder="Total Male Votes Casted">
@@ -52,7 +52,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="fmale_votes">Female Votes Casted</label>
+                        <label for="fmale_votes">Female Votes Casted (<span id="total_female_votes"></span>)</label>
                         <input type="number" onchange="changedT()" readonly
                                class="form-control" name="fmale_votes" id="fmale_votes"
                                placeholder="Total Female Votes Casted">
@@ -60,7 +60,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="t_votes">Transgender Votes Casted</label>
+                        <label for="t_votes">Transgender Votes Casted (<span id="total_t_votes"></span>)</label>
                         <input type="number" onchange="changedT()" readonly
                                class="form-control" name="t_votes" id="t_votes"
                                placeholder="Total Transgender Votes Casted">
@@ -120,6 +120,14 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     if (response.success) {
                         lockFields(false);
+                        document.getElementById("total_male_votes").innerText = "Total -" + response.boothDetails.male_voters;
+                        document.getElementById("total_female_votes").innerText = "Total -" + response.boothDetails.female_voters;
+                        document.getElementById("total_t_votes").innerText = "Total -" + response.boothDetails.trans_voters;
+
+                        document.getElementById("male_votes").max = response.boothDetails.male_voters;
+                        document.getElementById("fmale_votes").max = response.boothDetails.female_voters;
+                        document.getElementById("t_votes").max = response.boothDetails.trans_voters;
+
                     } else {
                         lockFields()
                         alert(response.message);
@@ -141,7 +149,13 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById("male_votes").value = "";
             document.getElementById("fmale_votes").value = "";
             document.getElementById("t_votes").value = "";
+            clearVotes();
         }
+    }
+    function clearVotes() {
+        document.getElementById("total_male_votes").innerText = "";
+        document.getElementById("total_female_votes").innerText = "";
+        document.getElementById("total_t_votes").innerText = "";
     }
 </script>
 <?php
