@@ -29,17 +29,17 @@ if (
         if ($op) {
             pageInfo("success", "Successful Entry!");
 
-            header("Location: ./entry.php");
+            header("Location: ./");
             exit;
         }
     } catch (PDOException $e) {
         pageInfo("warning", "DB ERROR!<br />Duplicate Entry Detected!!");
-        header("Location: ./entry.php");
+        header("Location: ./");
         exit;
     }
 } else {
     pageInfo("warning", "Invalid Input!");
 
-    header("Location: ./entry.php");
+    header("Location: ./");
     exit;
 }
