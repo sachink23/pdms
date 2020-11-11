@@ -4,8 +4,18 @@ if (!isset($title)) {
     header("Location: ../../dlogin.php");
     exit;
 }
-if (!isLoginDistAdmin($_SESSION["d_user"]["username"], $_SESSION["d_user"]["password"])) {
-    pageInfo("warning", "Session Expired!");
+if (isset($_SESSION["d_user"]["username"]) && isset($_SESSION["d_user"]["password"])) {
+
+
+    if (!isLoginDistAdmin($_SESSION["d_user"]["username"], $_SESSION["d_user"]["password"])) {
+        pageInfo("warning", "Session Expired!");
+        header("Location: ../dlogin.php");
+        exit;
+    }
+
+}
+else {
+    pageInfo("warning", "Login Required!");
     header("Location: ../dlogin.php");
     exit;
 }

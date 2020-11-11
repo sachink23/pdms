@@ -1,6 +1,6 @@
 <?php
 
-require_once "../include.php";
+require_once __DIR__."/../include.php";
 
 $title = APP_SHORT_NAME . " : District Dashboard";
 
