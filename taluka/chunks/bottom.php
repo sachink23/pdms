@@ -55,7 +55,11 @@
         $('.select2').select2();
     });
 </script>
-
+<style>
+    .select2 {
+        width:100%!important;
+    }
+</style>
 </body>
 </html>
 

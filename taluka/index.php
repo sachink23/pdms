@@ -20,18 +20,18 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <form method="post" action="make-entry.php" class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="booth_name">Select Booth</label>
+                        <label for="booth_name">Select Booth</label><br />
                         <select class="form-control select2" onchange="changedT()" required name="booth_name" id="booth_name">
                             <option value="">Select Booth</option>
                             <?php foreach ($booths as $booth): ?>
-                                <option value="<?= $booth['booth_id'] ?>"><?= $booth["booth_name"] ?></option>
+                                <option value="<?= $booth['booth_id'] ?>"><?= $booth["booth_number"] ?> - <?= $booth["booth_name"] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="slot">Select Time Slot</label>
+                        <label for="slot">Select Time Slot</label><br />
                         <select required onchange="changedT()" class="form-control select2" name="slot" id="slot">
                             <option value="">Select Time Slot</option>
                             <option value="slot_1">Upto 10 AM</option>
