@@ -24,20 +24,15 @@
     <br /><br />
 </div>
 <div class="container text-center my-2">
-    <h3><strong>जिल्हा - परभणी</strong></h3>
+    <h4><strong>जिल्हा - परभणी</strong></h4>
     <hr />
 </div>
 <div class="container my-2">
     <h2 class="text-center" style="font-size: 25px"><strong><?= APP_DESC ?></strong></h2>
     <hr />
     <div class="card">
-        <div class="card-header">
-            <h3 class="text-center" style="font-size: 20px;"><strong>मतदानाची माहिती</strong></h3>
-        </div>
         <div class="card-body">
-            <ul>
-                <li class="lead">दिनांक १/१२/२०२०,  मतदानाच्या दिवशी दर दोन तासाला परभणी जिल्ह्यातील ७८ मतदान केंद्रांची केंद्र निहाय झालेल्या मतदानाची  (पुरुष, स्त्री, ईतर)  आकडेवारी भरण्यासाठीची संगणक प्रणाली.</li>
-            </ul>
+                <p class="lead text-center"> १/१२/२०२०,  मतदानाच्या दिवशी दर दोन तासाला परभणी जिल्ह्यातील ७८ मतदान केंद्रांची केंद्र निहाय झालेल्या मतदानाची  (पुरुष, स्त्री, ईतर)  आकडेवारी भरण्यासाठीची संगणक प्रणाली.</p>
         </div>
 
     </div>
@@ -73,13 +68,7 @@
         </div>
     </div>
 </div>
-<div class="container my-2">
-    <div class="row">
-
-    </div>
-</div>
-<div class="container-fluid bg-light text-center text-dark pt-4 ">
-    <hr />
+<div class="container-fluid bg-light text-center text-dark pt-1 ">
     <img src="assets/download.webp" height="50px">
     <h6 class="my-2"><strong>Developed By NIC Parbhani</strong></h6>
 </div>
