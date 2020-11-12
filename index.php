@@ -36,9 +36,40 @@
         </div>
         <div class="card-body">
             <ul>
-                <li>Point 1</li>
-                <li>Point 2</li>
+                <li class="lead">दिनांक १/१२/२०२०,  मतदानाच्या दिवशी दर दोन तासाला परभणी जिल्ह्यातील ७८ मतदान केंद्रांची केंद्र निहाय झालेल्या मतदानाची  (पुरुष, स्त्री, ईतर)  आकडेवारी भरण्यासाठीची संगणक प्रणाली.</li>
             </ul>
+        </div>
+
+    </div>
+    <!-- Button trigger modal -->
+    <center>
+        <button type="button" class="btn btn-outline-dark my-2   btn-lg" data-toggle="modal" data-target="#informations">
+            मार्गदर्शक सूचना
+        </button>
+    </center>
+    <!-- Modal -->
+    <div class="modal fade" id="informations" tabindex="-1" role="dialog" aria-labelledby="margadarshak-suchna"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">मार्गदर्शक सूचना</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="lead">१. मतदानाच्या दिवशी (१/१२/२०२०) दर दोन तासाला मतदान केंद्र निहाय झालेल्या मतदानाची आकडेवारी भरण्यासाठीची संगणक प्रणाली.</p>
+                    <p class="lead">२. मतदान सकाळी ८ वाजता सुरू झाल्यानंतर पहिला टप्पा सकाळी ८ ते १०, दुसरा टप्पा सकाळी १० पर्यंत, तिसरा दुपारी २ पर्यंत, चौथा दुपारी ४ पर्यंत तर चौथा टप्पा मतदानाची अंतिम आकडेवारी म्हणजे ५ वाजेपर्यंत असा आहे.</p>
+                    <p class="lead">३. ५-औरंगाबाद पदवीधर मतदार संघाच्या परभणी जिल्ह्यातील ७८ मतदान केंद्राची तालुकानिहाय वर्गवारी करण्यात आली आहे.</p>
+                    <p class="lead">४. मतदान आकडेवारी भरण्यासाठी प्रथम तालुका निवडून लॉगीन करावे आणि नंतर मतदान केंद्र निवडावे.</p>
+                    <p class="lead">४. त्यानंतर ज्या कालावधीची आकडेवारी भरावयाची आहे तो टप्पा निवडावा.</p>
+                    <p class="lead">५. आकडेवारी भरतांना त्या टप्प्याच्या वेळे पर्यंत झालेल्या एकूण मतदाची आकडेवारी  (cumulative) भरावयाची आहे.</p>
+                    <p class="lead">७. आकडेवारी भरतांना त्यावेळी झालेल्या मतदानाची पुरुष, स्त्री, ईतर (Male, Female, Transgender) असे तीन संख्या भरावयाची आहे.</p>
+                    <p class="lead">८. एका टप्प्याची आकडेवारी फक्त एकदाच भरता येणार आहे. एकदा भरलेला आकडा पुन्हा बदलता येणार नाही.</p>
+                    <p class="lead">९. आकडेवारी टप्प्याच्या क्रमाने भरावी. पुढच्या टप्प्याची माहिती अगोदर भरता येणार नाही.</p>
+                </div></div>
+            </div>
         </div>
     </div>
 </div>
