@@ -17,7 +17,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
             Data Entry
         </div>
         <div class="card-body">
-            <form method="post" action="make-entry.php" class="row">
+            <form method="post" onsubmit="return submitForm()" action="make-entry.php" class="row">
                 <div class="col-12">
                     <div class="form-group">
                         <label for="booth_name">Select Booth</label><br />
@@ -45,7 +45,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="male_votes">Male Votes Casted (<span id="total_male_votes"></span>)</label>
-                        <input type="number" onchange="changedT()" readonly
+                        <input type="number" onchange="changedT()" readonly required
                                class="form-control" name="male_votes" id="male_votes"
                                placeholder="Total Male Votes Casted">
                     </div>
@@ -53,7 +53,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="fmale_votes">Female Votes Casted (<span id="total_female_votes"></span>)</label>
-                        <input type="number" onchange="changedT()" readonly
+                        <input type="number" onchange="changedT()" readonly required
                                class="form-control" name="fmale_votes" id="fmale_votes"
                                placeholder="Total Female Votes Casted">
                     </div>
@@ -61,7 +61,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12">
                     <div class="form-group">
                         <label for="t_votes">Transgender Votes Casted (<span id="total_t_votes"></span>)</label>
-                        <input type="number" onchange="changedT()" readonly
+                        <input type="number" onchange="changedT()" readonly required
                                class="form-control" name="t_votes" id="t_votes"
                                placeholder="Total Transgender Votes Casted">
                     </div>
@@ -100,8 +100,10 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         document.getElementById("ttl_votes").value = male_votes + fmale_votes + t_votes;
     }
-
+    window.submittable = false;
     function changedB() {
+        window.submittable = false;
+
         lockFields();
         let booth = document.getElementById("booth_name").value;
         let slot = document.getElementById("slot").value;
@@ -119,6 +121,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     let response = JSON.parse(this.response);
 
                     if (response.success) {
+                        window.submittable = true;
                         lockFields(false);
                         document.getElementById("total_male_votes").innerText = "Total -" + response.boothDetails.male_voters;
                         document.getElementById("total_female_votes").innerText = "Total -" + response.boothDetails.female_voters;
@@ -146,7 +149,6 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     }
-
     function lockFields(read = true) {
         document.getElementById("male_votes").readOnly = read;
         document.getElementById("fmale_votes").readOnly = read;
@@ -162,6 +164,13 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.getElementById("total_male_votes").innerText = "";
         document.getElementById("total_female_votes").innerText = "";
         document.getElementById("total_t_votes").innerText = "";
+    }
+    function submitForm() {
+        if (window.submittable) {
+            return true;
+        }
+        alert("Invalid Selection");
+        return false;
     }
 </script>
 <?php
