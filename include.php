@@ -51,6 +51,7 @@ function isLoginTalukaAdmin($username, $password) {
             return false;
         }
     } catch(PDOException $e) {
+        pageInfo("warning","DB ERROR!");
         return false;
     }
 
@@ -73,6 +74,8 @@ function isLoginDistAdmin($username, $password) {
             return false;
         }
     } catch(PDOException $e) {
+
+        pageInfo("warning","DB ERROR!");
         return false;
     }
 

@@ -3,7 +3,8 @@
     if (isset($_SESSION["d_logged_in"])) {
         if (isLoginDistAdmin($_SESSION["d_user"]["username"], $_SESSION["d_user"]["password"])) {
             header("Location: district/");
-            exit;
+        } else {
+            pageInfo("danger", "Invalid Data!");
         }
     }
 
