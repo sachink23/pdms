@@ -2,19 +2,21 @@
 
 require_once "../include.php";
 
-$title = APP_SHORT_NAME . " : Booth Entry";
+$title = APP_SHORT_NAME . " : Edit Slot!";
 
 require_once "chunks/top.php";
 
+$exit = false;
+
 $db = new Db();
 $con = $db->con();
-$stmt = $con->query("SELECT * FROM booths WHERE subdist_id = ".$_SESSION["t_user"]["subdist_id"]);
+$stmt = $con->query("SELECT * FROM booths");
 $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container">
     <div class="card">
         <div class="card-header">
-            Data Entry
+            District Level Entry Editor/Creator!
         </div>
         <div class="card-body">
             <form method="post" onsubmit="return submitForm()" action="make-entry.php" class="row">
@@ -80,7 +82,7 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </form>
         </div>
         <div class="card-footer text-muted">
-            Please Enter Details Correctly. Once Entered, The Details Can't Be Modified!
+            Can be used by district administration to modify/create slot entries!
         </div>
     </div>
 </div>
@@ -102,9 +104,8 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     window.submittable = false;
     function changedB() {
-        changedT();
         window.submittable = false;
-
+        changedT();
         lockFields();
         let booth = document.getElementById("booth_name").value;
         let slot = document.getElementById("slot").value;
@@ -133,8 +134,11 @@ $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         document.getElementById("t_votes").max = response.boothDetails.trans_voters;
 
                     } else {
-                        lockFields()
                         if (response.hasOwnProperty("entry")) {
+
+                            lockFields(false);
+                            window.submittable = true;
+
                             document.getElementById("male_votes").value = response.entry[0].male_voters;
                             document.getElementById("fmale_votes").value = response.entry[0].fmale_voters;
                             document.getElementById("t_votes").value = response.entry[0].t_voters;

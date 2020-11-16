@@ -1,12 +1,12 @@
 
 <?php
 if (!isset($title)) {
-    header("Location: ../../dlogin.php");
+    header("Location: ../../tlogin.php");
     exit;
 }
 if (!isLoginTalukaAdmin($_SESSION["t_user"]["name"], $_SESSION["t_user"]["password"])) {
     pageInfo("warning", "Session Expired!");
-    header("Location: ../dlogin.php");
+    header("Location: ../tlogin.php");
     exit;
 }
 

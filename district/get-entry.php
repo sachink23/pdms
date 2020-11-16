@@ -1,9 +1,15 @@
 <?php
 
 require_once "../include.php";
-if (!isLoginTalukaAdmin($_SESSION["t_user"]["name"], $_SESSION["t_user"]["password"])) {
-    pageInfo("warning", "Session Expired!");
-    header("Location: ../tlogin.php");
+
+if (isset($_SESSION["d_user"]["username"]) && isset($_SESSION["d_user"]["password"])) {
+    if (!isLoginDistAdmin($_SESSION["d_user"]["username"], $_SESSION["d_user"]["password"])) {
+        http_response_code(403);
+        exit;
+    }
+}
+else {
+    http_response_code(403);
     exit;
 }
 $op = new StdClass();
@@ -12,9 +18,9 @@ $op->message = "Invalid Selection";
 if (isset($_GET["booth_id"]) && isset($_GET["slot"])) {
     $db = new Db();
     $con = $db->con();
-    $stmt = $con->prepare("SELECT * FROM booths WHERE booth_id = ? and subdist_id = ?");
+    $stmt = $con->prepare("SELECT * FROM booths WHERE booth_id = ?");
 
-    $stmt->execute([$_GET["booth_id"], $_SESSION["t_user"]["subdist_id"]]);
+    $stmt->execute([$_GET["booth_id"]]);
 
     $booths = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (count($booths) == 1) {

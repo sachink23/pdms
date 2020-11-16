@@ -34,6 +34,36 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="../assets/theme-assets/js/main.js"></script>
 
+<script src="../assets/theme-assets/js/lib/data-table/datatables.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/jszip.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="../assets/theme-assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="../assets/theme-assets/js/init/datatables-init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.bootstrap-data-table-export').DataTable();
+    } );
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
+<style>
+    .select2 {
+        min-width:100%;
+    }
+</style>
 
 </body>
 </html>

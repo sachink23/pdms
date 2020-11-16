@@ -106,7 +106,6 @@ if (!$exit):
         </form>
 
     </div>
-
 <script>
     function calculateTotal() {
         document.getElementById("total_voters").value = parseInt(document.getElementById("male_voters").value) + parseInt(document.getElementById("fmale_voters").value) + parseInt(document.getElementById("t_voters").value)
