@@ -46,8 +46,8 @@ if ($show):
             <th rowspan="2">Booth Number</th>
             <th rowspan="2">Booth Name</th>
             <th colspan="4">Total Votes</th>
-            <th colspan="4">Casted Votes</th>
-            <th colspan="4">% Voting</th>
+            <th colspan="3">Casted Votes</th>
+            <th colspan="3">% Voting</th>
         </tr>
         <tr>
             <th>Male</th>
@@ -56,11 +56,9 @@ if ($show):
             <th>Total</th>
             <th>Male</th>
             <th>Female</th>
-            <th>Transgender</th>
             <th>Total</th>
             <th>Male</th>
             <th>Female</th>
-            <th>Transgender</th>
             <th>Total</th>
         </tr>
         </thead>
@@ -96,11 +94,9 @@ if ($show):
                 <td><?= $booth["total_voters"] ?></td>
                 <td><?= $male_voting ?></td>
                 <td><?= $female_voting ?></td>
-                <td><?= $trans_voting ?></td>
                 <td><?= $votes_casted ?></td>
-                <td><?= $booth["total_male_voters"] != 0 ? round(100 * ($male_voting / $booth["total_male_voters"]) , 4) : "NA" ?></td>
-                <td><?= $booth["total_female_voters"] != 0 ? round(100 * ($female_voting / $booth["total_female_voters"]) , 4) : "NA" ?></td>
-                <td><?= $booth["total_trans_voters"] != 0 ? round(100 * ($trans_voting / $booth["total_trans_voters"]) , 4) : "NA" ?></td>
+                <td><?= $booth["total_male_voters"] != 0 ? round(100 * ($male_voting / $booth["total_male_voters"]) , 4) : "0" ?></td>
+                <td><?= $booth["total_female_voters"] != 0 ? round(100 * ($female_voting / $booth["total_female_voters"]) , 4) : "0" ?></td>
                 <td><?= round(100 * ($votes_casted/$booth["total_voters"]), 4)  ?></td>
 
 
@@ -116,11 +112,9 @@ if ($show):
                 <th><?= $total_votes ?></th>
                 <th><?= $male_votes_casted ?></th>
                 <th><?= $female_votes_casted ?></th>
-                <th><?= $trans_votes_casted ?></th>
                 <th><?= $total_votes_casted ?></th>
-                <td><?= $available_male_votes != 0 ? round(100 * ($male_votes_casted / $available_male_votes) , 4) : "NA" ?></td>
-                <td><?= $available_female_votes != 0 ? round(100 * ($female_votes_casted / $available_female_votes) , 4) : "NA" ?></td>
-                <td><?= $available_trans_votes != 0 ? round(100 * ($trans_votes_casted / $available_trans_votes ) , 4) : "NA" ?></td>
+                <td><?= $available_male_votes != 0 ? round(100 * ($male_votes_casted / $available_male_votes) , 4) : "0" ?></td>
+                <td><?= $available_female_votes != 0 ? round(100 * ($female_votes_casted / $available_female_votes) , 4) : "0" ?></td>
 
 
 
