@@ -5,7 +5,7 @@ require_once __DIR__."/../include.php";
 $title = APP_SHORT_NAME . " : District Dashboard";
 
 
-
+$show_nav = false;
 require_once __DIR__. "/chunks/top.php";
 $db = new Db();
 $con = $db->con();
@@ -45,11 +45,19 @@ if ($show):
             <th rowspan="2">Sr Number</th>
             <th rowspan="2">Booth Number</th>
             <th rowspan="2">Booth Name</th>
-            <th rowspan="2">Total Votes</th>
+            <th colspan="4">Total Votes</th>
             <th colspan="4">Casted Votes</th>
-            <th rowspan="2">% Voting</th>
+            <th colspan="4">% Voting</th>
         </tr>
         <tr>
+            <th>Male</th>
+            <th>Female</th>
+            <th>Transgender</th>
+            <th>Total</th>
+            <th>Male</th>
+            <th>Female</th>
+            <th>Transgender</th>
+            <th>Total</th>
             <th>Male</th>
             <th>Female</th>
             <th>Transgender</th>
@@ -62,7 +70,9 @@ if ($show):
             $male_votes_casted = 0;
             $female_votes_casted = 0;
             $trans_votes_casted = 0;
-
+            $available_male_votes = 0;
+            $available_female_votes = 0;
+            $available_trans_votes = 0;
             $i = 0; foreach ($res as $booth):
                 $male_voting = $booth["male_voting_slot"] ?? 0;
                 $female_voting = $booth["female_voting_slot"] ?? 0;
@@ -72,17 +82,25 @@ if ($show):
                 $male_votes_casted += $male_voting;
                 $female_votes_casted += $female_voting;
                 $trans_votes_casted += $trans_voting;
-
+                $available_male_votes += $booth["total_male_voters"];
+                $available_female_votes += $booth["total_female_voters"];
+                $available_trans_votes += $booth["total_trans_voters"];
                 ?>
             <tr>
                 <td><?= ++$i ?></td>
                 <td><?= $booth["booth_number"] ?></td>
                 <td><?= $booth["booth_name"] ?></td>
+                <td><?= $booth["total_male_voters"] ?></td>
+                <td><?= $booth["total_female_voters"] ?></td>
+                <td><?= $booth["total_trans_voters"] ?></td>
                 <td><?= $booth["total_voters"] ?></td>
                 <td><?= $male_voting ?></td>
                 <td><?= $female_voting ?></td>
                 <td><?= $trans_voting ?></td>
                 <td><?= $votes_casted ?></td>
+                <td><?= $booth["total_male_voters"] != 0 ? round(100 * ($male_voting / $booth["total_male_voters"]) , 4) : "NA" ?></td>
+                <td><?= $booth["total_female_voters"] != 0 ? round(100 * ($female_voting / $booth["total_female_voters"]) , 4) : "NA" ?></td>
+                <td><?= $booth["total_trans_voters"] != 0 ? round(100 * ($trans_voting / $booth["total_trans_voters"]) , 4) : "NA" ?></td>
                 <td><?= round(100 * ($votes_casted/$booth["total_voters"]), 4)  ?></td>
 
 
@@ -92,11 +110,20 @@ if ($show):
             ?>
             <tr>
                 <th colspan="3">Total</th>
+                <th><?= $available_male_votes ?></th>
+                <th><?= $available_female_votes ?></th>
+                <th><?= $available_trans_votes ?></th>
                 <th><?= $total_votes ?></th>
                 <th><?= $male_votes_casted ?></th>
                 <th><?= $female_votes_casted ?></th>
                 <th><?= $trans_votes_casted ?></th>
                 <th><?= $total_votes_casted ?></th>
+                <td><?= $available_male_votes != 0 ? round(100 * ($male_votes_casted / $available_male_votes) , 4) : "NA" ?></td>
+                <td><?= $available_female_votes != 0 ? round(100 * ($female_votes_casted / $available_female_votes) , 4) : "NA" ?></td>
+                <td><?= $available_trans_votes != 0 ? round(100 * ($trans_votes_casted / $available_trans_votes ) , 4) : "NA" ?></td>
+
+
+
                 <th><?= round(100 * ($total_votes_casted/$total_votes), 4) ?></th>
             </tr>
         </tbody>

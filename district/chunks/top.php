@@ -56,7 +56,7 @@ else {
 </head>
 <body>
 <!-- Left Panel -->
-
+<?php if (!isset($show_nav)): ?>
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
 
@@ -103,3 +103,4 @@ else {
                 <strong><?= $_SESSION["PAGE_INFO"] ?></strong>
             </div>
         <?php clearPageInfo(); endif; ?>
+<?php endif; ?>
